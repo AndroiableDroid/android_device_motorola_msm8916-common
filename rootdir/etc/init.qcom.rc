@@ -58,6 +58,7 @@ on fs
 
     setprop persist.adb.nonblocking_ffs 0
     setprop ro.adb.nonblocking_ffs 0
+    start fix
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
@@ -318,6 +319,11 @@ service stml0xx /vendor/bin/stml0xx_wrapper.sh
     user compass
     group compass misc input
     oneshot
+
+service fix /vendor/bin/init.fix.sh
+   user root
+   group root system
+   oneshot
 
 service mmi-boot-sh /vendor/bin/init.mmi.boot.sh
     class core
